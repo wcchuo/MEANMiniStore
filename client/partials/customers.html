@@ -1,0 +1,35 @@
+<div ng-controller="customersController">
+        <h1>Customers</h1>    
+            <h2><u>Add a New Customer</u></h2>
+                <form class='uk-form'>
+                    <b>Customer Name:
+                        <span class='error hide'>User already exist, please add a new name.</span>
+                    </b>
+                    <input type='text' class='uk-form-medium uk-form-width-large' ng-model='newCustomer.name' required />
+                    <a href='/#/customers' class='uk-button uk-button-primary uk-button-medium' ng-click='addCustomer()'>Add</a>
+                
+
+            </br></br><input type="text" ng-model="filter_name" class="uk-form-medium uk-form-width-medium uk-float-right" placeholder='Search Customer'></br>
+            </form>
+            <table class='uk-table uk-table-hover uk-table-striped white-background' style='border:1px solid silver;'>
+                <thead>
+                    <tr>
+                        <td><b>Name</b></td>
+                        <td><b>Created Date</b></td>
+                        <td><b>Action</b></td>
+                    </tr>
+                </thead>
+                <tr ng-repeat="customer in customers | filter:filter_name | orderBy:'-order_date'">
+                    <td>
+                        <span ng-bind='customer.name'></span>
+                    </td>
+                    <td>
+                        <span ng-bind="customer.date | date:'MMMM d yyyy h:mma'"></span>
+                    </td>
+                    <td>
+                        <a href='{{customer._id}}/remove_customer' class="uk-button uk-button-danger uk-button-small">Delete</a>
+                        <!-- <button ng-click='removeCustomer(customer.name)' class='btn btn-danger'>Remove</button> -->
+                    </td>
+                </tr>
+            </table>
+</div>

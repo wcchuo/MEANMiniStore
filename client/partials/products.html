@@ -1,0 +1,33 @@
+<div ng-controller="productsController" class="uk-container uk-grid">
+        <div class="uk-width-2-10 uk-width-medium-2-10 uk-width-small-1-1 uk-padding-remove">
+            <h1>Products</h1>    
+            <form class='uk-form'>
+            <input type="text" ng-model="filter_name" class="uk-form-medium uk-form-width-large" placeholder='Search Products'>
+            </form>
+
+            <h3><u>Add a New Products</u></h3>
+            <form class='uk-form'>
+                <b>Product Name: </b></br>
+                <input type='text' class='uk-form-medium uk-form-width-large' ng-model='newProduct.product_name' required placeholder='Product Name' /></br>
+                <b>Image URL: </b></br>
+                <input type='text' class='uk-form-medium uk-form-width-large' ng-model='newProduct.product_img_url' required placeholder='http://' /></br>
+                <b>Product Description: </b></br>
+                <textarea class='uk-form-medium uk-form-width-large' ng-model='newProduct.product_description' required placeholder='Product Description' rows='6'/></textarea></br>
+                <b>Unit Price: $</b></br>
+                <input type='text' class='uk-form-medium uk-form-width-large' ng-model='newProduct.product_price' placeholder='99.99' required /></br>
+                <b>Initial Quantity: </b></br>
+                <input type='text' class='uk-form-medium uk-form-width-large' ng-model='newProduct.product_quantity' placeholder='Quantity' required /></br></br>
+                <a href='/#/products' class='uk-button uk-button-primary uk-button-medium uk-float-right' ng-click='addProduct()'>Add</a>
+            </form>
+        </div>
+        <div class="uk-width-8-10 uk-width-medium-8-10 uk-width-small-1-1 uk-grid-medium move-top">
+            <div class='product_thumb_div' ng-repeat="product in products | filter:filter_name | orderBy:'-product_date'">
+                <b><span ng-bind='product.product_name | limitTo: 28' title='{{product.product_name}}'></span>...</b><br>
+                <img src='{{product.product_img_url}}' width="140" alt='{{product.product_name}}' title='{{product.product_name}}' ><br>
+                <!-- <span ng-bind='product.product_description'></span><br> -->
+                Price: <b>$<span ng-bind='product.product_price'></span></b><br>
+                Qty: <b><span ng-bind='product.product_quantity'></span></b>
+                <a href='{{product._id}}/delete_product' class="uk-button uk-button-danger uk-button-mini uk-float-right">Delete</a>
+            </div>
+        </div>
+</div>

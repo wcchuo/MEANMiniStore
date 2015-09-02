@@ -1,0 +1,118 @@
+<div class="uk-container uk-grid">
+    <div class='uk-width-large-1-1'>
+        <div ng-controller="productsController">
+            <table style="margin-bottom:-20px; margin-top:20px;">
+                <tr>
+                    <td width="60%">
+                        <h1>Products</h1>
+                    </td>
+                    <td width="20%" align="right">
+                        <form class='uk-form'>
+                            <input type="text" ng-model="filter_name" class="uk-form-medium uk-form-width-medium" placeholder='Filter Products'>
+                        </form>
+                    </td>
+                    <td align="right">
+                        Total Products: {{products.length}}
+                    </td>
+                </tr>
+            </table>
+            <div class='product_thumb_main_div' 
+            ng-repeat="product in products | filter:filter_name | orderBy:'-product_date'">
+                <b><span ng-bind='product.product_name | limitTo: 28' title='{{product.product_name}}'></span>...</b><br>
+                <img src='{{product.product_img_url}}' width="140" alt='{{product.product_name}}' title='{{product.product_name}}' ><br>
+                Price: <b>$<span ng-bind='product.product_price'></span></b><br>
+                Qty: <b><span ng-bind='product.product_quantity'></span></b>
+                <a href='{{product._id}}/delete_product' class="uk-button uk-button-danger uk-button-mini uk-float-right">Delete</a>
+            </div>
+        </div>
+    </div>
+
+    <div class='uk-width-large-1-1'>
+        <div ng-controller="ordersController">
+            <table style="margin-bottom:-20px; margin-top:20px;">
+                <tr>
+                    <td width="65%">
+                        <h1>Recent Orders</h1>
+                    </td>
+                    <td width="20%">
+                        <form class='uk-form'>
+                            <input type="text" ng-model="filter_name" class="uk-form-medium uk-form-width-medium" placeholder='Filter Orders'>
+                        </form>
+                    </td>
+                    <td align="right">
+                        Total Orders: {{orders.length}}
+                    </td>
+                </tr>
+            </table>
+            <table class='uk-table uk-table-hover uk-table-striped white-background' style='border:1px solid silver;'>
+                <thead>
+                    <tr>
+                        <td><b>Customer Name</b></td>
+                        <td><b>Product</b></td>
+                        <td><b>Quantity</b></td>
+                        <td><b>Date</b></td>
+                        <td><b>Action</b></td>
+                    </tr>
+                </thead>
+                <tr ng-repeat="order in orders | filter:filter_name | orderBy:'-order_date'">
+                    <td>
+                        <span ng-bind='order.customer_name'></span>
+                    </td>
+                    <td>
+                        <span ng-bind="order.product"></span>
+                    </td>
+                    <td>
+                        <span ng-bind='order.quantity'></span>
+                    </td>
+                    <td>
+                        <span ng-bind="order.order_date | date:'MMMM d yyyy'"></span>
+                    </td>
+                    <td>
+                        <a href='{{order._id}}/delete_order' class="uk-button uk-button-danger uk-button-small">Delete</a>
+                    </td>
+                </tr>
+            </table>
+        </div>        
+    </div>
+
+    <div class='uk-width-large-1-1'>
+        <div ng-controller="customersController">
+            <table style="margin-bottom:-20px; margin-top:20px;">
+                <tr>
+                    <td width="65%">
+                        <h1>Customers</h1>
+                    </td>
+                    <td width="20%">
+                        <form class='uk-form'>
+                            <input type="text" ng-model="filter_name" class="uk-form-medium uk-form-width-medium" placeholder='Filter Customers'>
+                        </form>
+                    </td>
+                    <td align="right">
+                        Total Customers: {{customers.length}}
+                    </td>
+                </tr>
+            </table>
+            <table class='uk-table uk-table-hover uk-table-striped white-background' style='border:1px solid silver;'>
+                <thead>
+                    <tr>
+                        <td><b>Name</b></td>
+                        <td><b>Created Date</b></td>
+                        <td><b>Action</b></td>
+                    </tr>
+                </thead>
+                <tr ng-repeat="customer in customers | filter:filter_name | orderBy:'-order_date'">
+                    <td>
+                        <span ng-bind='customer.name'></span>
+                    </td>
+                    <td>
+                        <span ng-bind="customer.date | date:'MMMM d yyyy h:mma'"></span>
+                    </td>
+                    <td>
+                        <a href='{{customer._id}}/remove_customer' class="uk-button uk-button-danger uk-button-small">Delete</a>
+                    </td>
+                </tr>
+            </table>            
+        </div>        
+    </div>
+
+</div>

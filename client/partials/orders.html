@@ -1,0 +1,82 @@
+<div ng-controller="ordersController">
+        <h1>Orders</h1>    
+            <h2><u>Add a New Order</u></h2>
+                <form class='uk-form'>
+                    <table>
+                        <tr>
+                            <td><b>Customer:</b></td>
+                            <td>
+                                <div ng-controller="customersController">
+                                    <select  ng-model='newOrder.customer_name' required class="uk-form-width-medium" >
+                                        <option value='{{customer.name}}' ng-repeat='customer in customers'>{{customer.name}}</option>
+                                    </select>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Product:</b></td>
+                            <td>
+                                <div ng-controller="productsController">
+                                    <select  ng-model='newOrder.product' required class="uk-form-width-medium" >
+                                        <option value='{{product.product_name}}' ng-repeat='product in products'>{{product.product_name}}</option>
+                                    </select>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Quantity:</b></td>
+                            <td>
+                                <select ng-model='newOrder.quantity' required  class="uk-form-width-medium" >
+                                    <option value='1'>1</option>
+                                    <option value='2'>2</option>
+                                    <option value='3'>3</option>
+                                    <option value='4'>4</option>
+                                    <option value='5'>5</option>
+                                    <option value='6'>6</option>
+                                    <option value='7'>7</option>
+                                    <option value='8'>8</option>
+                                    <option value='9'>9</option>
+                                    <option value='10'>10</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><a href='/#/orders' class='uk-button uk-button-primary uk-button-medium uk-float-right' ng-click='addOrder()'>Add</a></td>
+                        </tr>
+                    </table>
+
+                
+
+            </br><input type="text" ng-model="filter_name" class="uk-form-medium uk-form-width-medium uk-float-right" placeholder='Search Orders'/></br>
+                </form>
+            <table class='uk-table uk-table-hover uk-table-striped white-background' style='border:1px solid silver;'>
+                <thead>
+                    <tr>
+                        <td><b>Customer Name</b></td>
+                        <td><b>Product</b></td>
+                        <td><b>Quantity</b></td>
+                        <td><b>Date</b></td>
+                        <td><b>Action</b></td>
+                    </tr>
+                </thead>
+                <tr ng-repeat="order in orders | filter:filter_name | orderBy:'-order_date'">
+                    <td>
+                        <span ng-bind='order.customer_name'></span>
+                    </td>
+                    <td>
+                        <span ng-bind="order.product"></span>
+                    </td>
+                    <td>
+                        <span ng-bind='order.quantity'></span>
+                    </td>
+                    <td>
+                        <span ng-bind="order.order_date | date:'MMMM d yyyy'"></span>
+                    </td>
+                    <td>
+                        <a href='{{order._id}}/delete_order' class="uk-button uk-button-danger uk-button-small">Delete</a>
+                        <!-- <button ng-click='removeOrder(order._id)' class='btn btn-danger'>Remove</button> -->
+                    </td>
+                </tr>
+            </table>
+</div>

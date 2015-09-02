@@ -1,0 +1,62 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic);
+
+.background {
+	background-image: url(../images/background-computer-wallpaper-SFsT.jpg);
+  	background-position: center center;
+ 	background-repeat: no-repeat;
+  	background-attachment: fixed;
+ 	background-size: cover;
+ 	background-color:#464646;
+ 	margin: 0;
+ }
+
+ .white-background {
+ 	background-color: white;
+ 		background: rgba(232, 232, 232, .9);
+ }
+
+.footer {
+	left: 0%;
+}
+
+.product_thumb_div {
+	margin: 6px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-right: 16px;
+	width: 150px;
+	height: 200px;
+	display: inline-block;
+	vertical-align: top;
+	box-shadow: 1px 1px 8px 0px rgba(0,0,0,0.75);
+	border-radius: 5px;
+	background-color: white;
+}
+
+.product_thumb_main_div {
+	margin: 1%;
+	padding: 10px;
+	width: 160px;
+	height: 220px;
+	display: inline-block;
+	vertical-align: top;
+	box-shadow: 1px 1px 8px 0px rgba(0,0,0,0.75);
+	border-radius: 5px;
+	background-color: white;
+}
+
+.hide {
+    display: none;
+}
+
+.error {
+    color: red;
+}
+
+.blank {
+    color: red;
+}
+
+.nav {
+    padding: 10px;
+}
